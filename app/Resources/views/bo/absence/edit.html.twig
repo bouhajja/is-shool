@@ -1,0 +1,58 @@
+{% extends 'baseAdmin.html.twig' %}
+{% block body %}
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+    <!-- Navbar -->
+    {{ include('bo/navbar/navbar.html.twig') }}
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+
+    {{ include('bo/sidebar/sidebar.html.twig') }}
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Ajouter une note</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Editer une absence</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <form name="appbundle_absence" method="post">
+                        <div><label for="appbundle_absence_date" class="required">Date</label>
+                            <input type="date" value="{{ entity.date|date('Y-m-d') }}" id="appbundle_absence_date" name="appbundle_absence[date]" required="required">
+                        </div>
+                        {{ form_row(form.users) }}
+                        {{ form_row(form.matiere) }}
+                        {{ form_row(form.envoyer) }}
+                    </form>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    {% include 'bo/footer/footer.html.twig' %}
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+</div>
+{% endblock %}

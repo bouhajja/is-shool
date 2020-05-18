@@ -1,0 +1,113 @@
+{% extends 'baseAdmin.html.twig' %}
+{% block body %}
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+    <!-- Navbar -->
+    {{ include('bo/navbar/navbar.html.twig') }}
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+
+    {{ include('bo/sidebar/sidebar.html.twig') }}
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Simple Tables</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Simple Tables</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-9">
+
+
+                        <form method="post" action="{{ path('absence_admin') }}">
+                            <div class="row">
+                                <div class="col-4">
+                                    <select name="etudiant" class="form-control">
+                                        <option value="-1">selectionner un etudiant</option>
+                                        {% for student in student %}
+                                            <option value="{{ student.id }}">{{ student.username }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-4">
+
+                                    <select name="matiere" class="form-control">
+                                        <option value="-1">selectionner un matiere</option>
+                                        {% for matiere in matiere %}
+                                            <option value="{{ matiere.id }}">{{ matiere.nom }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="col-4">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                </div>
+
+
+                            </div>
+
+
+                        </form>
+
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th style="width: 10px">#</th>
+                                <th>Matiere</th>
+                                <th>etudiant</th>
+                                <th>date</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for absence in absence %}
+
+
+
+                                <tr>
+                                    <td>{{ absence.id }}</td>
+                                    <td>{{ absence.matiere.nom }}</td>
+                                    <td>{{ absence.users.username }}</td>
+                                    <td>
+                                        {{ absence.date|date('d-m-Y') }}
+                                    </td>
+                                    <td><a href="{{ path('admin_edit_absence',{'id':absence.id}) }}" class="btn btn-success"><i class="fa fa-edit"></i></a></td>
+                                </tr>
+
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    {% include 'bo/footer/footer.html.twig' %}
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+</div>
+{% endblock %}

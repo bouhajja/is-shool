@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <body>
+    <p>Bonjour Mr/Mme {{ note.users.username }}</p>
+    <p>
+        Matiere {{ note.matiere.nom }}
+    </p>
+    <p>DS: {{ note.noteDs }}</p>
+    <p>Examens: {{ note.noteExamen }}</p>
+    <p>Moyenne en matiere {{ note.moyen }}</p>
+    </body>
+{% endblock %}
